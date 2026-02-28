@@ -1,0 +1,65 @@
+<?php
+    session_start();
+    include("../config/db.php");
+    if($_SESSION['role']!='customer')
+        {
+            header("Location: ../authentication/login.php");
+            exit();
+        }
+    $user_id = $_SESSION['user_id'];
+
+    $sql = "SELECT cart.*,products.product_name,products.stock,products.price
+    FROM cart
+    JOIN products
+    ON cart.product_id = products.product_id
+    WHERE cart.user_id = '$user_id'";
+
+    $res = mysqli_query($conn,$sql);
+?>
+<h2>My Cart</h2>
+
+<table>
+<tr>
+    <th>Product</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Total</th>
+    <th>Action</th>
+</tr>
+
+<?php
+$grand_total = 0;
+
+while($row = mysqli_fetch_assoc($res))
+{
+    $total = $row['price'] * $row['quantity'];
+    $grand_total += $total;
+?>
+<tr>
+    <td><?php echo $row['product_name']; ?></td>
+    <td><?php echo $row['price']; ?></td>
+    <td>
+        <form action="update-cart.php" method="POST">
+            <input type="hidden" name="product_id" value="<?php echo $row['product_id'];?>">
+            <input type="number" name="qty" value="<?php echo $row['quantity'];?>" min="1">
+
+            <button>Update</button>
+        </form>
+    </td>
+    <td><?php echo $total; ?></td>
+    <td>
+        <a href="remove.php?id=<?php echo $row['product_id']; ?>">
+            Remove
+        </a>
+    </td>
+</tr>
+<?php
+}
+?>
+</table>
+
+<h3>Grand Total: <?php echo $grand_total; ?></h3>
+
+<a href="checkout.php">
+    <button>Proceed to Checkout</button>
+</a>
