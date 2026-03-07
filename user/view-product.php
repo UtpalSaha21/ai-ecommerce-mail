@@ -54,7 +54,9 @@
 
                 mysqli_query($conn,$track_sql);
 
-                echo "Added to cart.";
+                $_SESSION['cart_add'] = "<div style='color:green;'>Added to cart</div>";
+                header("Location: home.php");
+                exit();
             }
             if(isset($_POST['buy']))
                 {
@@ -72,26 +74,49 @@
 
 ?>
 
-<h2><?php echo $row['product_name'];?></h2>
-Category : <?php echo $row['category'];?> <br>
-Price : <?php echo $row['price'];?> <br>
-Stock : <?php echo $row['stock'];?> <br><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <div class="menu text-center">
+        <div class="wrapper">
+            <ul>
+                <li><a href="home.php">Home</a></li>
+                <li><a href="cart.php">Cart</a></li>
+                <li><a href="my-orders.php">My Orders</a></li>
+                <li><a href="../authentication/logout.php">Logout</a></li>
+            </ul>  
+        </div>
+    </div>
+    <div class="container">
+        <h2><?php echo $row['product_name'];?></h2>
+        Category : <?php echo $row['category'];?> <br>
+        Price : <?php echo $row['price'];?> <br>
+        Stock : <?php echo $row['stock'];?> <br>
 
-<form action="" method="POST">
-    <input type="hidden" name="product_id" value="<?php echo $product_id;?>">
-    Quantity : 
-    <input type="number" name="qty" value="1" min="1"> <br><br>
-    <?php
-    if($row['stock']>0)
-        {
-        ?>
-            <button name="cart">Add to cart</button>
-            <button name="buy">Buy now</button>
-        <?php
-        }
-    else
-        {
-            echo "Out of Stock";
-        }
-        ?>
-</form>
+        <form action="" method="POST">
+            <input type="hidden" name="product_id" value="<?php echo $product_id;?>"> 
+            Quantity: <input type="number" name="qty" class="text-center" value="1" min="1">
+            <?php
+            if($row['stock']>0)
+                {
+                ?>
+                    <button name="cart">Add to cart</button>
+                    <p>Or</p>
+                    <button name="buy">Buy now</button>
+                <?php
+                }
+            else
+                {
+                    echo "<div style='color:red'>Out of Stock</div>";
+                }
+                ?>
+        </form>
+    </div>
+</body>
+</html>

@@ -279,28 +279,44 @@ else
 }
 ?>
 
-<h2>Checkout</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <div class="menu text-center">
+        <div class="wrapper">
+            <ul>
+                <li><a href="home.php">Home</a></li>
+                <li><a href="cart.php">Cart</a></li>
+                <li><a href="my-orders.php">My Orders</a></li>
+                <li><a href="../authentication/logout.php">Logout</a></li>
+            </ul>  
+        </div>
+    </div>
+    
+    <div class="container">
+    <h2>Checkout</h2><br>
 <form action="" method="POST">
-    Address: <br>
-    <textarea name="address" required></textarea><br><br>
+    <textarea name="address" placeholder="Address" required></textarea><br>
 
-    Contact No: <br>
-    <input type="text" name="contact" required><br><br>
+    <input type="text" name="contact" placeholder="Contact No" required>
 
-    Payment Method: <br>
-    <select name="payment" required>
-        <option value="">Select</option>
+    <select name="payment" class="text-center" required>
+        <option value="">Payment Method</option>
         <option value="Cash On Delivery">Cash On Delivery</option>
         <option value="Bkash">Bkash</option>
         <option value="Nagad">Nagad</option>
     </select>
-    <br><br>
-
-    Coupon Code: <br>
-    <input type="text" name="coupon_code" placeholder="Enter coupon code"><br><br>
+    <br>
+    <input type="text" name="coupon_code" placeholder="Enter coupon code"><br>
 
     <button name="apply_coupon">Apply Coupon</button>
-    <br><br>
+    <br>
 
     <h3>Order Summary</h3>
 
@@ -335,3 +351,6 @@ else
     ?>
     <button name="place_order">Place Order</button>
 </form>
+</div>
+</body>
+</html>

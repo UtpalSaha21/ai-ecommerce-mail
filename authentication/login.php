@@ -22,11 +22,13 @@
 
                             if($row['role']=='admin')
                                 {
+                                    $_SESSION['wlc'] = "<div style='color:green'>Welcome,".$row['name']."</div>";
                                     header("Location: ../admin/dashboard.php");
                                     exit();
                                 }
                             else
                                 {
+                                    $_SESSION['wlc'] = "<div style='color:green'>Welcome,".$row['name']."</div>";
                                     header("Location: ../user/home.php");
                                     exit();
                                 }
@@ -50,18 +52,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/reg.css">
 </head>
 <body>
-    <h2>Login</h2>
+    <div class="container">
+    <h2>Welcome Back</h2>
+
+    <?php
+        if(isset($_SESSION['done']))
+            {
+                echo $_SESSION['done'];
+                unset($_SESSION['done']);
+            }
+    ?>
 
     <form action="" method="POST">
-        Email : <br>
-        <input type="email" name="email" required> <br><br>
+        <input type="email" name="email" placeholder="Email" required>
 
-        Password : <br>
-        <input type="password" name="password" required> <br><br>
+        <input type="password" name="password" placeholder="Password" required>
 
         <button type="submit" name="submit">Login</button>
+
+        <p>
+            Don't have an account yet?
+            <a href="registration.php">Sign up</a>
+        </p>
     </form>
+    </div>
 </body>
 </html>

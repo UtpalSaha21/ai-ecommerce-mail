@@ -56,8 +56,10 @@
             email_type = 'purchase_confirmation',
             status = 'sent'
         ");
+        $_SESSION['mail'] = "<div style='color:green;'>Purchase complete and Email Sent</div>";
+        header("Location: user/home.php");
+        exit();
 
-        echo "Email Sent";
     }
     else
     {
@@ -69,6 +71,8 @@
             status = 'failed'
         ");
 
-        echo "Email Failed";
+        $_SESSION['mail'] = "<div style='color:green;'>Purchase complete and Email sent failed</div>";
+        header("Location: user/home.php");
+        exit();
     }
 ?>

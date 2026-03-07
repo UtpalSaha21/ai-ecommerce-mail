@@ -100,6 +100,47 @@ if(isset($_POST['send_reminder']))
             }
     }
 
-    echo "Cart reminder emails sent successfully!";
+    $_SESSION['cart'] = "<div style='color:green;'>Cart reminder emails sent successfully!</div>";
+    header("Location: dashboard.php");
+    exit();
 }
+
+if(isset($_POST['No']))
+    {
+        header("Location: dashboard.php");
+        exit();
+    }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+    <div class="menu text-center">
+        <div class="wrapper">
+            <ul>
+                <li><a href="dashboard.php">Home</a></li>
+                <li><a href="add-products.php">Add Products</a></li>
+                <li><a href="products.php">Products</a></li>
+                <li><a href="manage-orders.php">Manage Orders</a></li>
+                <li><a href="mail-log.php">Email Logs</a></li>
+                <li><a href="../authentication/logout.php">Log Out</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <h2>Do you want to send reminder email to customers about their cart products?</h2>
+        <form action="" method="POST">
+        <button name="send_reminder" class="button">Yes</button>
+        <br>
+        <button name="No" class="button">No</button>
+    </form>
+    </div>
+</body>
+</html>

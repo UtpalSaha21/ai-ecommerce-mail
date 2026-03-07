@@ -1,0 +1,141 @@
+.menu{
+    border-bottom: 1px solid gray;
+}
+.menu ul{
+    list-style-type: none;
+}
+.menu ul li{
+    display: inline;
+    padding: 1%;
+}
+.menu ul li a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #ff6b81;
+}
+.menu ul li a:hover{
+    color: #ff4757;
+}
+
+.wrapper{
+    padding: 1%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.col-4{
+    width: 18%;
+    background-color: white;
+    margin: 1%;
+    padding: 2%;
+    float: left;
+}
+
+.main-content{
+    background-color: #f1f2f6;
+    padding: 3%;
+}
+
+.clearfix{
+    float: none;
+    clear: both;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.tbl-full1 {
+    border-collapse: collapse;
+    min-width: 1200px; /* ensures enough space for all columns */
+}
+
+.tbl-full1 th, .tbl-full1 td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: left;
+    white-space: nowrap; /* prevent line breaks in cells */
+}
+
+.tbl-full1 a{
+    text-decoration: none;
+    color: green;
+}
+
+.tbl-full1 a:hover{
+    color: black;
+}
+
+.cl{
+    color: greenyellow;
+}
+
+.container {
+    max-width: 450px;
+    margin: 70px auto;
+    padding: 35px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.container h2 {
+    color: #020f08;
+    margin-bottom: 25px;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.container input{
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.container button {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.container button:hover {
+    background-color: #2ecc71;
+}
+
+.btn {
+    text-decoration: none;
+    color: #ff6b81;
+}
+
+.btn:hover {
+    color: #ff4757;
+}
+
+.btn1{
+    color: green;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn1:hover {
+    background-color: black;
+    color: white;
+}

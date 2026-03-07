@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("../config/db.php");
 
     if(isset($_POST['submit']))
@@ -10,6 +11,16 @@
             //$password = $_POST['password'];
             //$encrypte_password = password_hash($password,PASSWORD_DEFAULT);
 
+            $dup_sql = "SELECT * FROM users WHERE email = '$email'";
+            $dup_res = mysqli_query($conn,$dup_sql);
+            $dup_row = mysqli_num_rows($dup_res);
+            if($dup_row>0)
+                {
+                    $_SESSION['exist'] = "This email already used";
+                    header("Location: registration.php");
+                    exit();
+                }
+
             $sql = "INSERT INTO users SET
             name = '$name',
             email = '$email',
@@ -19,11 +30,15 @@
 
             if($res==true)
                 {
-                    echo "done";
+                    $_SESSION['done'] = "Registration Successful";
+                    header("Location: login.php");
+                    exit();
                 }
                 else
                     {
-                        echo "fail";
+                        $_SESSION['done'] = "Registration Failed";
+                        header("Location: registration.php");
+                        exit();
                     }
         }
 
@@ -35,21 +50,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/reg.css">
 </head>
 <body>
-    <h2>Registration</h2>
+    <div class="container">
+    <h2>Sign Up</h2>
+
+    <?php
+        if(isset($_SESSION['done']))
+            {
+                echo $_SESSION['done'];
+                unset($_SESSION['done']);
+            }
+
+            if(isset($_SESSION['exist']))
+            {
+                echo $_SESSION['exist'];
+                unset($_SESSION['exist']);
+            }
+    ?>
     
-    <form action="" method = "POST">
-        Name : <br>
-        <input type="text" name = "name" required> <br><br>
+    <form action="" method = "POST"> 
+        <input type="text" name = "name" placeholder="Name" required> 
 
-        Email : <br>
-        <input type="email" name = "email" required> <br><br>
+        <input type="email" name = "email" placeholder="Email" required> 
 
-        Password : <br>
-        <input type="password" name = "password" required> <br><br>
+        <input type="password" name = "password" placeholder="Password" required>
 
         <button type="submit" name="submit">Submit</button>
+
+        <p>
+            Already have an account?
+            <a href="login.php">Sign in</a>
+        </p>
     </form>
+    </div>
 </body>
 </html>

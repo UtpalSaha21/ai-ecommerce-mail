@@ -25,105 +25,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
-    <h1>Admin Dashboard</h1>
+    
+
+    <div class="menu text-center">
+        <div class="wrapper">
+            <ul>
+                <li><a href="add-products.php">Add Products</a></li>
+                <li><a href="products.php">Products</a></li>
+                <li><a href="manage-orders.php">Manage Orders</a></li>
+                <li><a href="send-cart-reminder.php">Send Cart Reminder</a></li>
+                <li><a href="mail-log.php">Email Logs</a></li>
+                <li><a href="../authentication/logout.php">Log Out</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!-- <h1>Admin Dashboard</h1>
 
     <p>
         Welcome , <?php echo $_SESSION['name']; ?>
-    </p>
+    </p> -->
 
-    <hr>
+    <div class="main-content">
+        <div class="wrapper">
 
-    <a href="add-products.php">Add Products</a>
-    <a href="manage-orders.php">Manage Orders</a>
-    <a href="send-cart-reminder.php">Send Cart Reminder</a>
-    <a href="">Email Logs</a>
-    <a href="../authentication/logout.php">Log Out</a>
+        
+    <h1>System Statics</h1>
 
-    <hr>
+    <?php
+        if(isset($_SESSION['wlc']))
+            {
+                echo $_SESSION['wlc'];
+                unset($_SESSION['wlc']);
+            }
 
-    <h2>System Statics</h2>
-    <table>
-        <tr>
-            <td>
+        if(isset($_SESSION['cart']))
+            {
+                echo $_SESSION['cart'];
+                unset($_SESSION['cart']);
+            }
+
+        if(isset($_SESSION['add']))
+            {
+                echo $_SESSION['add'];
+                unset($_SESSION['add']);
+            }
+
+        if(isset($_SESSION['update']))
+            {
+                echo $_SESSION['update'];
+                unset($_SESSION['update']);
+            }
+    ?>
+    <br>
+    
+        
+            <div class="col-4 text-center">
                 <h3>Total Users</h3>
                 <?php echo $total_user ;?>
-            </td>
+            </div>
 
-            <td>
+            <div class="col-4 text-center">
                 <h3>Total Products</h3>
                 <?php echo $total_products ;?>
-            </td>
+            </div>
 
-            <td>
+            <div class="col-4 text-center">
                 <h3>Total Orders</h3>
                 <?php echo $total_order ;?>
+            </div>
+
+            <div class="col-4 text-center">
+                <h3>Total Revenue</h3>
+                Tk. <?php echo $total_revenue ;?>
+            </div>
+        <div class="clearfix"></div>
+    
+    </div>
+    </div>
+
+
+    <div class="main-content">
+        <div class="table-wrapper">
+            <h2>Recent Orders</h2>
+
+            <table class="tbl-full1">
+
+            <tr>
+            <th>S.N.</th>
+            <th>Customer</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Address</th>
+            <th>Order ID</th>
+            <th>Contact</th>
+            <th>Action</th>
+            </tr>
+
+            <?php
+            $sn = 1;
+            while($order=mysqli_fetch_assoc($order_res))
+            {
+            ?>
+            <tr>
+
+            <td>
+            <?php echo $sn++; ?>
+            </td>
+            <td>
+            <?php echo $order['name']; ?>
             </td>
 
             <td>
-                <h3>Total Revenue</h3>
-                <?php echo $total_revenue ;?>
+            ৳ <?php echo $order['total_amount']; ?>
             </td>
-        </tr>
-    </table>
 
-    <hr>
+            <td>
+            <?php echo $order['status']; ?>
+            </td>
 
-    <h2>Recent Orders</h2>
+            <td>
+            <?php echo $order['address']; ?>
+            </td>
 
-<table border="1" cellpadding="10">
+            <td>
+            <?php echo $order['order_id']; ?>
+            </td>
 
-<tr>
-<th>Order ID</th>
-<th>Customer</th>
-<th>Amount</th>
-<th>Status</th>
-<th>Address</th>
-<th>Contact</th>
-<th>Action</th>
-</tr>
+            <td>
+            <?php echo $order['contact_no']; ?>
+            </td>
 
-<?php
-while($order=mysqli_fetch_assoc($order_res))
-{
-?>
-<tr>
+            <td>
+            <a href="update-order-status.php?id=<?php echo $order['order_id']; ?>">
+            Update Status
+            </a>
+            </td>
+            </tr>
 
-<td>
-<?php echo $order['order_id']; ?>
-</td>
-<td>
-<?php echo $order['name']; ?>
-</td>
+            <?php
+            }
+            ?>
 
-<td>
-৳ <?php echo $order['total_amount']; ?>
-</td>
-
-<td>
-<?php echo $order['status']; ?>
-</td>
-
-<td>
-<?php echo $order['address']; ?>
-</td>
-
-<td>
-<?php echo $order['contact_no']; ?>
-</td>
-
-<td>
-<a href="update-order-status.php?id=<?php echo $order['order_id']; ?>">
-Update Status
-</a>
-</td>
-</tr>
-
-<?php
-}
-?>
-
-</table>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

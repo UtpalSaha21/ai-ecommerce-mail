@@ -16,9 +16,29 @@
 
     $res = mysqli_query($conn,$sql);
 ?>
-<h2>My Cart</h2>
 
-<table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <div class="menu text-center">
+        <div class="wrapper">
+            <ul>
+                <li><a href="home.php">Home</a></li>
+                <li><a href="my-orders.php">My Orders</a></li>
+                <li><a href="../authentication/logout.php">Logout</a></li>
+            </ul>  
+        </div>
+    </div>
+
+
+    <h2>My Cart</h2>
+<table class="tbl-full1">
 <tr>
     <th>Product</th>
     <th>Price</th>
@@ -57,9 +77,14 @@ while($row = mysqli_fetch_assoc($res))
 }
 ?>
 </table>
-
+<div class="container">
 <h3>Grand Total: <?php echo $grand_total; ?></h3>
 
 <a href="checkout.php">
     <button>Proceed to Checkout</button>
 </a>
+
+</div>
+
+</body>
+</html>

@@ -19,21 +19,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body>
-    <h2>Welcome , <?php echo $name;?>!</h2>
+    <div class="menu text-center">
+        <div class="wrapper">
+            <ul>
+                <li><a href="cart.php">Cart</a></li>
+                <li><a href="my-orders.php">My Orders</a></li>
+                <li><a href="../authentication/logout.php">Logout</a></li>
+            </ul>  
+        </div>
+    </div>
+    
+    <!--<h2>Welcome , <?php echo $name;?>!</h2>-->
 
-    <hr>
+    <h3>Available Products</h3><br>
 
-    <a href="cart.php">Cart</a>
-    <a href="my-orders.php">My Orders</a>
-    <a href="../authentication/logout.php">Logout</a>
+    <?php
+        if(isset($_SESSION['wlc']))
+            {
+                echo $_SESSION['wlc'];
+                unset($_SESSION['wlc']);
+            }
 
-    <hr>
+        if(isset($_SESSION['cart_add']))
+            {
+                echo $_SESSION['cart_add'];
+                unset($_SESSION['cart_add']);
+            }
+        
+        if(isset($_SESSION['mail']))
+            {
+                echo $_SESSION['mail'];
+                unset($_SESSION['mail']);
+            }
+    ?>
 
-    <h3>Available Products</h3>
+    <br>
 
-    <table border="1" cellpadding="10">
+    <table class="tbl-full1">
         <tr>
             <th>Name</th>
             <th>Category</th>
