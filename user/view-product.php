@@ -87,6 +87,7 @@
         <div class="wrapper">
             <ul>
                 <li><a href="home.php">Home</a></li>
+                <li><a href="products.php">Products</a></li>
                 <li><a href="cart.php">Cart</a></li>
                 <li><a href="my-orders.php">My Orders</a></li>
                 <li><a href="../authentication/logout.php">Logout</a></li>
@@ -95,9 +96,9 @@
     </div>
     <div class="container">
         <h2><?php echo $row['product_name'];?></h2>
-        Category : <?php echo $row['category'];?> <br>
-        Price : <?php echo $row['price'];?> <br>
-        Stock : <?php echo $row['stock'];?> <br>
+        Category : <?php echo $row['category'];?> <br><br>
+        Price : <strong><?php echo $row['price'];?> T.K.</strong> <br><br>
+        Stock : <?php echo $row['stock'];?> <br><br>
 
         <form action="" method="POST">
             <input type="hidden" name="product_id" value="<?php echo $product_id;?>"> 

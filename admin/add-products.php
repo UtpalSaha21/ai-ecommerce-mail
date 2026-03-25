@@ -73,7 +73,15 @@
     <form action="" method="POST">
         <input type="text" name="name" placeholder="Product Name" required>
 
-        <input type="text" name="category" placeholder="Category" required>
+        <select name="category" required>
+            <option value="" disabled selected>Select Category</option>
+            <option value="Apparel & Accessories">Apparel & Accessories</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Home & Garden">Home & Garden</option>
+            <option value="Health & Beauty">Health & Beauty</option>
+            <option value="Baby & Kids">Baby & Kids</option>
+            <option value="Sports & Outdoors">Sports & Outdoors</option>
+        </select>
 
         <input type="number" name="stock" placeholder="Stock" required>
 

@@ -292,6 +292,7 @@ else
         <div class="wrapper">
             <ul>
                 <li><a href="home.php">Home</a></li>
+                <li><a href="products.php">Products</a></li>
                 <li><a href="cart.php">Cart</a></li>
                 <li><a href="my-orders.php">My Orders</a></li>
                 <li><a href="../authentication/logout.php">Logout</a></li>

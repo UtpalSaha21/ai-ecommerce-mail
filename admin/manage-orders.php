@@ -52,7 +52,7 @@ while($row = mysqli_fetch_assoc($res))
     Total: <?php echo $row['total_amount']; ?><br>
 
     Status: <?php echo $row['status'];?><br><br>
-    <a href="update-order-status.php?id=<?php echo $row['order_id']; ?>" class="btn">
+    <a href="update-order-status.php?id=<?php echo $row['order_id']; ?>" class="btn1">
     Update Status
     </a>
 </form>

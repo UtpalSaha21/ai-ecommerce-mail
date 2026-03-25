@@ -10,10 +10,14 @@
     $res = mysqli_query($conn,$sql);
     if(isset($_POST['submit']))
         {
+            $name = mysqli_real_escape_string($conn,$_POST['name']);
+            $category = mysqli_real_escape_string($conn,$_POST['category']);
             $price = mysqli_real_escape_string($conn,$_POST['price']);
             $stock = mysqli_real_escape_string($conn,$_POST['stock']);
             $id = mysqli_real_escape_string($conn,$_POST['id']);
             $sql2 = "UPDATE products SET
+            product_name = '$name',
+            category = '$category',
             price = '$price',
             stock = '$stock'
             WHERE product_id = '$id'";
@@ -63,7 +67,7 @@
                     <th>S.N.</th>
                     <th>Name</th>
                     <th>Category</th>
-                    <th>Price</th>
+                    <th>Price(T.K.)</th>
                     <th>Stock</th>
                     <th>Actions</th>
                 </tr>
@@ -76,8 +80,18 @@
                     <form action="" method="POST">
                         <tr>
                         <td><?php echo $sn++;?></td>
-                        <td><?php echo $row['product_name'];?></td>
-                        <td><?php echo $row['category'];?></td>
+                        <td><input type="text" name="name" value="<?php echo $row['product_name'];?>"></td>
+                        <td>
+                            <select name="category">
+                                <option value="<?php echo $row['category'];?>"><?php echo $row['category'];?></option>
+                                <option value="Apparel & Accessories">Apparel & Accessories</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Home & Garden">Home & Garden</option>
+                                <option value="Health & Beauty">Health & Beauty</option>
+                                <option value="Baby & Kids">Baby & Kids</option>
+                                <option value="Sports & Outdoors">Sports & Outdoors</option>
+                            </select>
+                        </td>
                         <td><input type="text" inputmode="decimal" name="price" value="<?php echo $row['price'];?>"></td>
                         <td><input type="number" name="stock" value="<?php echo $row['stock'];?>"></td>
                         <td>
