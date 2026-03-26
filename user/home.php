@@ -62,6 +62,7 @@
     <table class="tbl-full1">
         <tr>
             <th>Name</th>
+            <th>Image</th>
             <th>Category</th>
             <th>Price</th>
             <th>Stock</th>
@@ -77,6 +78,10 @@
 
         <td>
         <?php echo $row['product_name']; ?>
+        </td>
+
+        <td>
+            <img src="../images/<?php echo $row['image_name'] ;?>" alt="No image found" width="150px">
         </td>
 
         <td>

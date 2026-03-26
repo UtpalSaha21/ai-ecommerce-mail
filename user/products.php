@@ -63,6 +63,7 @@ $res = mysqli_query($conn, $sql);
     <?php while ($row = mysqli_fetch_assoc($res)) { ?>
         <div class="container">
             <h3><?php echo $row['product_name']; ?></h3>
+            <p><img src="../images/<?php echo $row['image_name'] ;?>" alt="No image found" width="150px"></p>
             Category :<?php echo $row['category']; ?><br>
             Price : <?php echo $row['price']; ?><br>
             Stock : <?php echo $row['stock']; ?><br><br>

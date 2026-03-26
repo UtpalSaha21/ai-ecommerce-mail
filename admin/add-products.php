@@ -14,9 +14,28 @@
                 $category = mysqli_real_escape_string($conn,$_POST['category']);
                 $stock = mysqli_real_escape_string($conn,$_POST['stock']);
                 $price = mysqli_real_escape_string($conn,$_POST['price']);
+                if(isset(($_FILES['image']['name'])))
+                    {
+                        $image_name = $_FILES['image']['name'];
+                        if($image_name!="")
+                            {
+                                $ext = end(explode('.',$image_name));
+                                $image_name = "Product_Name_".rand(0000,9999).'.'.$ext;
+                                $src = $_FILES['image']['tmp_name'];
+                                $dst ="../images/".$image_name;
+                                $upload = move_uploaded_file($src,$dst);
+                                if($upload==false)
+                                    {
+                                        $_SESSION['upload'] = "<div style='color:red;'>Failed to upload image</div>";
+                                        header("Location: add-products.php");
+                                        die();
+                                    }
+                            }
+                    }
 
                 $sql = "INSERT INTO products SET
                 product_name = '$name',
+                image_name = '$image_name',
                 category = '$category',
                 price = '$price',
                 stock = '$stock'";
@@ -69,9 +88,20 @@
         echo $_SESSION['add'];
         unset($_SESSION['add']);
     }
+    if(isset(($_SESSION['upload'])))
+    {
+        echo $_SESSION['upload'];
+        unset($_SESSION['upload']);
+    }
     ?>
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         <input type="text" name="name" placeholder="Product Name" required>
+
+       <p class="text-left">
+        Product Image :
+       </p>
+
+       <input type="file" name="image">
 
         <select name="category" required>
             <option value="" disabled selected>Select Category</option>

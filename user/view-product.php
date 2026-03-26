@@ -96,6 +96,7 @@
     </div>
     <div class="container">
         <h2><?php echo $row['product_name'];?></h2>
+        <p><img src="../images/<?php echo $row['image_name'] ;?>" alt="No image found" width="250px"></p>
         Category : <?php echo $row['category'];?> <br><br>
         Price : <strong><?php echo $row['price'];?> T.K.</strong> <br><br>
         Stock : <?php echo $row['stock'];?> <br><br>

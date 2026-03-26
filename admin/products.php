@@ -10,21 +10,8 @@
     $res = mysqli_query($conn,$sql);
     if(isset($_POST['submit']))
         {
-            $name = mysqli_real_escape_string($conn,$_POST['name']);
-            $category = mysqli_real_escape_string($conn,$_POST['category']);
-            $price = mysqli_real_escape_string($conn,$_POST['price']);
-            $stock = mysqli_real_escape_string($conn,$_POST['stock']);
-            $id = mysqli_real_escape_string($conn,$_POST['id']);
-            $sql2 = "UPDATE products SET
-            product_name = '$name',
-            category = '$category',
-            price = '$price',
-            stock = '$stock'
-            WHERE product_id = '$id'";
-            mysqli_query($conn,$sql2);
-            $_SESSION['update'] = "<div style='color:green'>Product Updated Successfully.</div>";
-            header("Location: products.php");
-            exit();
+            $product_id = $_POST['id'];
+            header("Location: update-product.php?id=".$product_id);
         }
 ?>
 
@@ -66,6 +53,7 @@
                 <tr>
                     <th>S.N.</th>
                     <th>Name</th>
+                    <th>Image</th>
                     <th>Category</th>
                     <th>Price(T.K.)</th>
                     <th>Stock</th>
@@ -80,20 +68,21 @@
                     <form action="" method="POST">
                         <tr>
                         <td><?php echo $sn++;?></td>
-                        <td><input type="text" name="name" value="<?php echo $row['product_name'];?>"></td>
                         <td>
-                            <select name="category">
-                                <option value="<?php echo $row['category'];?>"><?php echo $row['category'];?></option>
-                                <option value="Apparel & Accessories">Apparel & Accessories</option>
-                                <option value="Electronics">Electronics</option>
-                                <option value="Home & Garden">Home & Garden</option>
-                                <option value="Health & Beauty">Health & Beauty</option>
-                                <option value="Baby & Kids">Baby & Kids</option>
-                                <option value="Sports & Outdoors">Sports & Outdoors</option>
-                            </select>
+                            <?php echo $row['product_name'];?>
                         </td>
-                        <td><input type="text" inputmode="decimal" name="price" value="<?php echo $row['price'];?>"></td>
-                        <td><input type="number" name="stock" value="<?php echo $row['stock'];?>"></td>
+                        <td>
+                            <p><img src="../images/<?php echo $row['image_name'] ;?>" alt="No image found" width="150px"></p>
+                        </td>
+                        <td>
+                            <?php echo $row['category'];?>
+                        </td>
+                        <td>
+                            <?php echo $row['price'];?>
+                        </td>
+                        <td>
+                            <?php echo $row['stock'];?>
+                        </td>
                         <td>
                         <input type="hidden" name="id" value="<?php echo $row['product_id']; ?>">    
                         <button name="submit" class="btn1">Update</button>
