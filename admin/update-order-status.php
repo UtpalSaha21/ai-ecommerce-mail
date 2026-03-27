@@ -123,6 +123,8 @@
     <button name="update_status">Update Status</button>
 </form>
 </div>
-
+<?php
+        include("../partials/footer.php");
+    ?>
 </body>
 </html>

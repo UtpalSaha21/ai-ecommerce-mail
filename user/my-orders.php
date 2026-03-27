@@ -14,6 +14,7 @@ $sql = "SELECT * FROM orders
         ORDER BY order_date DESC";
 
 $res = mysqli_query($conn,$sql);
+$count = mysqli_num_rows($res);
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +41,11 @@ $res = mysqli_query($conn,$sql);
     <h2>My Orders</h2>
     </div>
     <?php
+        if($count == 0){
+            echo "<p class='text-center' style='color:red;'>No Order History Avaiable</p>";
+        }
+    ?>
+    <?php
     while($row = mysqli_fetch_assoc($res))
     {
     ?>
@@ -51,6 +57,9 @@ $res = mysqli_query($conn,$sql);
 </div>
     <?php
     }
+    ?>
+    <?php
+        include("../partials/footer.php");
     ?>
 </body>
 </html>

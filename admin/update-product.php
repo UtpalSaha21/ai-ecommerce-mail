@@ -151,5 +151,8 @@
         <button type="submit" name="submit" class="button">Submit</button>
     </form>
     </div>
+    <?php
+        include("../partials/footer.php");
+    ?>
 </body>
 </html>

@@ -61,5 +61,9 @@ while($row = mysqli_fetch_assoc($res))
 }
 ?>
 </div>
+
+<?php
+        include("../partials/footer.php");
+    ?>
 </body>
 </html>

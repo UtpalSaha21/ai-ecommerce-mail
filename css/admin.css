@@ -1,5 +1,10 @@
+body{
+    padding: 0;
+    margin: 0;
+}
 .menu{
     border-bottom: 1px solid gray;
+    background: #2c3e50;
 }
 .menu ul{
     list-style-type: none;
@@ -11,10 +16,19 @@
 .menu ul li a{
     text-decoration: none;
     font-weight: bold;
-    color: #ff6b81;
+    color: white;
+    font-weight: bold;
 }
 .menu ul li a:hover{
     color: #ff4757;
+}
+
+.footer{
+        text-align: center;
+        padding: 15px;
+        background: #2c3e50;
+        color: white;
+        margin-top: 30px;
 }
 
 .wrapper{

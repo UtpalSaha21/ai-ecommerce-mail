@@ -86,18 +86,18 @@
                 {
                     $_SESSION['coupon'] = $temp_coupon;
                     $coupon_row = $temp_coupon;
-                    echo "<p style='color:green;'>Coupon applied successfully ✅</p>";
+                    $_SESSION['display'] = "<p style='color:green;'>Coupon applied successfully ✅</p>";
                 }
                 else
                 {
                     unset($_SESSION['coupon']);
-                    echo "<p style='color:red;'>This coupon is not valid for your current items ❌</p>";
+                    $_SESSION['display1'] = "<p style='color:red;'>This coupon is not valid for your current items ❌</p>";
                 }
             }
             else
             {
                 unset($_SESSION['coupon']);
-                echo "<p style='color:red;'>Invalid or expired coupon ❌</p>";
+                $_SESSION['display2'] = "<p style='color:red;'>Invalid or expired coupon ❌</p>";
             }
         }
 
@@ -302,6 +302,25 @@ else
     
     <div class="container">
     <h2>Checkout</h2><br>
+    <?php
+    if(isset($_SESSION['display']))
+        {
+            echo $_SESSION['display'];
+            unset($_SESSION['display']);
+        }
+
+        if(isset($_SESSION['display1']))
+        {
+            echo $_SESSION['display1'];
+            unset($_SESSION['display1']);
+        }
+
+        if(isset($_SESSION['display2']))
+        {
+            echo $_SESSION['display2'];
+            unset($_SESSION['display2']);
+        }
+    ?>
 <form action="" method="POST">
     <textarea name="address" placeholder="Address" required></textarea><br>
 
@@ -353,5 +372,9 @@ else
     <button name="place_order">Place Order</button>
 </form>
 </div>
+
+<?php
+        include("../partials/footer.php");
+    ?>
 </body>
 </html>

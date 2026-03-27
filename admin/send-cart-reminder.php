@@ -142,5 +142,9 @@ if(isset($_POST['No']))
         <button name="No" class="button">No</button>
     </form>
     </div>
+
+    <?php
+        include("../partials/footer.php");
+    ?>
 </body>
 </html>

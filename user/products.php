@@ -72,6 +72,10 @@ $res = mysqli_query($conn, $sql);
         <?php
     }
     ?>
+
+    <?php
+        include("../partials/footer.php");
+    ?>
 </body>
 
 </html>
